@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
         transform: 'rotate(180deg)',
     },
     avatar: {
-        backgroundColor: red[500],
+        backgroundColor: "#f7b600",
     },
 }));
 
@@ -97,6 +97,13 @@ const UserCards = (props) => {
                     <ExpandMoreIcon />
                 </IconButton>
             </CardActions>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+                <CardContent>
+                <Typography paragraph>
+                Email: {email}
+                </Typography>
+                </CardContent>
+            </ Collapse >
         </Card>
     );
 }

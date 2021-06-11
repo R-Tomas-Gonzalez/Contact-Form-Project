@@ -114,13 +114,11 @@ const Header = (props) => {
                   onClose={() => setAnchorEl(null)}
                 >
                   <MenuItem onClick={() => handleMenuClick("/")}>Home</MenuItem>
-                  <MenuItem onClick={() => handleMenuClick("/edit")}>Edit</MenuItem>
                   <MenuItem onClick={() => handleMenuClick("/new")}>New Contact</MenuItem>
                 </Menu>
                 </>) : (
                   <div className={classes.headerOptions}>
                     <Button className={classes.button} variant="contained" onClick={() => handleMenuClick("/")}> Home </Button>
-                    <Button className={classes.button} variant="contained" onClick={() => handleMenuClick("/edit")}> Edit </Button>
                     <Button className={classes.button} variant="contained" onClick={() => handleMenuClick("/new")}> New Contact </Button>
                   </div>
                 )}

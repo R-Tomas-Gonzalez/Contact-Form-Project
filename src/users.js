@@ -20,9 +20,9 @@ const users = [
     {
         id: 3,
         firstName: "Rocko",
-        lastName: "Modern Life",
+        lastName: "Rama",
         phoneNumber: "512-123-3456",
-        email: "rocko@gmail.com"
+        email: "rocko.rama@gmail.com"
     },
     {
         id: 4,
