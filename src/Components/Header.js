@@ -75,10 +75,10 @@ const Header = (props) => {
   
   return (
     <React.Fragment>
-      <Container>
         <CssBaseline />
         <HideOnScroll {...props}>
         <AppBar className={classes.appBarStyle}>
+      <Container>
           <Toolbar>
             <Box edge="start" className={classes.box}>
               <IconContext.Provider value={{ size: "7.5em"}}>
@@ -123,11 +123,11 @@ const Header = (props) => {
                   </div>
                 )}
           </Toolbar>
+      </Container>
         </AppBar>
         </HideOnScroll>
         <Toolbar />
         <Toolbar />
-      </Container>
     </React.Fragment>
   );
 }

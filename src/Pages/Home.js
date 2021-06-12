@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
-import users from '../users';
 import UserCards from '../Components/UserCards'
 
 const useStyles = makeStyles((theme) => ({
@@ -24,20 +23,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Home = (props) => {
-  const [userProfiles, setUserProfiles] = useState([]);
-
- 
-  
-  useEffect(() => {
-    const data = sessionStorage.getItem("user-data");
-    if (data) {
-      setUserProfiles(JSON.parse(data));
-    }
-  }, [])
-
-  useEffect(() => {
-    sessionStorage.setItem("user-data", JSON.stringify(users));
-  })
+  const userProfiles = props.userData;
+  console.log(userProfiles)
 
   const classes = useStyles();
 
