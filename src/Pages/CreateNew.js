@@ -10,8 +10,8 @@ const CreateNew = (props) => {
   const phoneNumberRef = useRef(null);
   const emailRef = useRef(null);
 
-  const addNewContact = (newContactInfo) => {
-    props.handleNewData(newContactInfo);
+  const addNewContact = (newContactInfo, event) => {
+    props.handleNewData(newContactInfo, event);
     
     props.history.push("/");
   }
@@ -30,7 +30,7 @@ const CreateNew = (props) => {
       
     })
 
-    addNewContact(newContactInfo);
+    addNewContact(newContactInfo, event);
 
     event.preventDefault();
   }

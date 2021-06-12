@@ -18,6 +18,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import EditModal from './EditModal';
 import EditComponent from './EditComponent';
+import { IoPersonSharp } from 'react-icons/io5';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -104,7 +105,7 @@ const UserCards = (props) => {
             />
             <CardMedia
                 className={classes.media}
-                image={image}
+                image={image ? image : IoPersonSharp}
             />
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">

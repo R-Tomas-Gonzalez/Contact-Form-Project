@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = (props) => {
   const userProfiles = props.userData;
-  console.log(userProfiles)
+  // console.log(userProfiles)
 
   const classes = useStyles();
 

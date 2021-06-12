@@ -17,15 +17,9 @@ function App() {
     }
   }, [])
 
-  useEffect(() => {
-    sessionStorage.setItem("user-data", JSON.stringify(users));
-  })
-
-  const handleNewData = (data) => {
-    const stored = JSON.parse(sessionStorage.getItem("user-data"));
-    stored.push(data);
-    sessionStorage.setItem("user-data", JSON.stringify(stored));
-    setUserProfiles(JSON.parse(sessionStorage.getItem("user-data")))
+  const handleNewData = (data, event) => {
+    userProfiles.push(data);
+    sessionStorage.setItem("user-data", JSON.stringify(userProfiles));
   }
   
   return (
