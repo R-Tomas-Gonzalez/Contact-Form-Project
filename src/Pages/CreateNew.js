@@ -1,25 +1,24 @@
-import React, {useRef, useState} from "react";
+import React, {useRef} from "react";
 import Container from '@material-ui/core/Container';
 
 
 const CreateNew = (props) => {
-
-
+  
   const firstNameRef = useRef(null);
   const lastNameRef = useRef(null);
   const phoneNumberRef = useRef(null);
   const emailRef = useRef(null);
 
-  const addNewContact = (newContactInfo, event) => {
-    props.handleNewData(newContactInfo, event);
+  const addNewContact = (newContactInfo) => {
+    props.handleNewData(newContactInfo);
     
     props.history.push("/");
   }
 
-  const onSubmit = (event) => {
+  const handleSubmit = (event) => {
 
-    const lastUser = props.userData.length - 1
-    const lastUserId = props.userData[lastUser].id
+    const lastUser = props.userData.length - 1;
+    const lastUserId = props.userData[lastUser].id;
     
     const newContactInfo = ({
       "id": (lastUserId + 1),
@@ -30,7 +29,7 @@ const CreateNew = (props) => {
       
     })
 
-    addNewContact(newContactInfo, event);
+    addNewContact(newContactInfo);
 
     event.preventDefault();
   }
@@ -39,7 +38,7 @@ const CreateNew = (props) => {
     <Container>
       <div>
         <h1>Add Character</h1>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="firstName">First Name</label>
             <br></br>

@@ -10,8 +10,8 @@ const EditModal = ({ open, children, onClose }) => {
     return ReactDom.createPortal(
         <Fragment>
             <div className="overlay-styles" onClick={onClose}/>
-            <div className="registration-modal-styles">
-                <button className="modal-button" onClick={onClose}>X</button>
+            <div className="modal-styles">
+                <button  onClick={onClose}>X</button>
                 {children} 
             </div>
         </Fragment>,

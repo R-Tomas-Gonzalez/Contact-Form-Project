@@ -1,8 +1,8 @@
 .App-background {
   width: 100%;
   min-height: 100%;
-  color: rgb(117, 115, 110);
-  background: rgb(247, 246, 243); 
+  color: #75736e;
+  background: #f7f6f3; 
   position: absolute;
   background-size: 400%, 400%;
 }
@@ -17,16 +17,15 @@
   z-index: 1000;
 }
 
-.registration-modal-styles {
+.modal-styles {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #267793;
+  background-color: #f7f6f3;
   padding: 25px;
   z-index: 1000;
-  color: black;
+  color: #75736e;
   border-radius: 7px;
-  text-align: center;
   font-family: Moonlight;
 }

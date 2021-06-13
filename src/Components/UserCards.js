@@ -12,13 +12,12 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Paper from '@material-ui/core/Paper';
 import EditModal from './EditModal';
 import EditComponent from './EditComponent';
-import { IoPersonSharp } from 'react-icons/io5';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -44,16 +43,21 @@ const useStyles = makeStyles((theme) => ({
     avatar: {
         backgroundColor: "#f7b600",
     },
+    paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
 }));
 
 const UserCards = (props) => {
-    const { firstName, lastName, phoneNumber, email } = props.item
+    const { id, firstName, lastName, phoneNumber, email } = props.item
 
     const [isOpen, setIsOpen] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const avatarLetter = firstName[0] + lastName[0];
-    const image = `/images/${firstName}.png`
+    const image = `/images/${id}.png`
 
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
@@ -66,78 +70,83 @@ const UserCards = (props) => {
         setExpanded(!expanded);
     };
 
+    const handleDelete = () => {
+        if (window.confirm(`Are you sure you want to delete ${props.item.firstName} ${props.item.lastName}?`)) {
+            props.handleDelete(props.item);
+        }
+    }
+
     return (
-        <Card className={classes.root}>
-            <CardHeader
-                avatar={
-                    <Avatar aria-label="recipe" className={classes.avatar}>
-                        {avatarLetter}
-                    </Avatar>
-                }
-                action={
-                    <>
-                    <IconButton aria-label="settings" onClick={handleMenu}>
-                        <MoreVertIcon />
-                    </IconButton>
-                    <Menu
-                    id="menu-appbar"
-                    anchorEl={anchorEl}
-                    anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                    open={open}
-                    onClose={() => setAnchorEl(null)}
-                >
-                    <MenuItem onClick={() => {setIsOpen(true); setAnchorEl(null)}}>Edit</MenuItem>
-                    <EditModal open={isOpen} onClose={() => setIsOpen(false)}>
-                        <EditComponent key={props.item.id} handleInputChange={props.handleInputChange} userInfo={props.item} to="/" onClick={() => this.setState({isOpen: false})}/>
-                    </EditModal>
-                </Menu>
-                </>
-                }
-                title={`${firstName} ${lastName} `}
-            />
-            <CardMedia
-                className={classes.media}
-                image={image ? image : IoPersonSharp}
-            />
-            <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    Phone Number: {phoneNumber}
-                </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                </IconButton>
-                <IconButton aria-label="share">
-                    <ShareIcon />
-                </IconButton>
-                <IconButton
-                    className={clsx(classes.expand, {
-                        [classes.expandOpen]: expanded,
-                    })}
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                >
-                    <ExpandMoreIcon />
-                </IconButton>
-            </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <Paper className={classes.paper}>
+            <Card className={classes.root}>
+                <CardHeader
+                    avatar={
+                        <Avatar aria-label="intials" className={classes.avatar}>
+                            {avatarLetter}
+                        </Avatar>
+                    }
+                    action={
+                        <>
+                        <IconButton aria-label="settings" onClick={handleMenu}>
+                            <MoreVertIcon />
+                        </IconButton>
+                        <Menu
+                        id="menu-appbar"
+                        anchorEl={anchorEl}
+                        anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        open={open}
+                        onClose={() => setAnchorEl(null)}
+                    >
+                        <MenuItem onClick={() => {setIsOpen(true); setAnchorEl(null)}}>Edit</MenuItem>
+                        <EditModal open={isOpen} onClose={() => setIsOpen(false)}>
+                            <EditComponent key={props.item.id} handleEdits={props.handleEdits} userInfo={props.item} to="/" onClick={() => this.setState({isOpen: false})}/>
+                        </EditModal>
+                    </Menu>
+                    </>
+                    }
+                    title={`${firstName} ${lastName} `}
+                />
+                <CardMedia
+                    className={classes.media}
+                    image={image}
+                />
                 <CardContent>
-                    <Typography paragraph>
-                        Email: {email}
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        Phone Number: {phoneNumber}
                     </Typography>
                 </CardContent>
-            </ Collapse >
-        </Card>
+                <CardActions disableSpacing>
+                    <IconButton aria-label="add to favorites" onClick={handleDelete}>
+                        <DeleteOutlineIcon />
+                    </IconButton>
+                    <IconButton
+                        className={clsx(classes.expand, {
+                            [classes.expandOpen]: expanded,
+                        })}
+                        onClick={handleExpandClick}
+                        aria-expanded={expanded}
+                        aria-label="show more"
+                    >
+                        <ExpandMoreIcon />
+                    </IconButton>
+                </CardActions>
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    <CardContent>
+                        <Typography paragraph>
+                            Email: {email}
+                        </Typography>
+                    </CardContent>
+                </ Collapse >
+            </Card>
+        </Paper>
     );
 }
 
