@@ -10,12 +10,11 @@ function App() {
   const [userProfiles, setUserProfiles] = useState(users);
 
   useEffect(() => {
-    console.log("hello")
     const data = sessionStorage.getItem("user-data");
     if (data) {
       setUserProfiles(JSON.parse(data));
     }
-  }, ["user-data"])
+  }, [])
   
   const handleNewData = (data) => {
     userProfiles.push(data);

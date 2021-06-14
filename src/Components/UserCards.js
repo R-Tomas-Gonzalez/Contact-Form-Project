@@ -20,6 +20,7 @@ import EditModal from './EditModal';
 import EditComponent from './EditComponent';
 
 const useStyles = makeStyles((theme) => ({
+    
     root: {
         maxWidth: 345,
     },
@@ -36,9 +37,11 @@ const useStyles = makeStyles((theme) => ({
         transition: theme.transitions.create('transform', {
             duration: theme.transitions.duration.shortest,
         }),
+        color: "blue"
     },
     expandOpen: {
         transform: 'rotate(180deg)',
+        
     },
     avatar: {
         backgroundColor: "#f7b600",
@@ -47,10 +50,14 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-  },
+    },
+    delete: {
+        color: "red"
+    }
 }));
 
 const UserCards = (props) => {
+    
     const { id, firstName, lastName, phoneNumber, email } = props.item
 
     const [isOpen, setIsOpen] = React.useState(false);
@@ -60,6 +67,8 @@ const UserCards = (props) => {
     const image = `/images/${id}.png`
 
     const classes = useStyles();
+
+
     const [expanded, setExpanded] = React.useState(false);
 
     const handleMenu = (event) => {
@@ -80,6 +89,7 @@ const UserCards = (props) => {
         <Paper className={classes.paper}>
             <Card className={classes.root}>
                 <CardHeader
+                    
                     avatar={
                         <Avatar aria-label="intials" className={classes.avatar}>
                             {avatarLetter}
@@ -107,12 +117,12 @@ const UserCards = (props) => {
                     >
                         <MenuItem onClick={() => {setIsOpen(true); setAnchorEl(null)}}>Edit</MenuItem>
                         <EditModal open={isOpen} onClose={() => setIsOpen(false)}>
-                            <EditComponent key={props.item.id} handleEdits={props.handleEdits} userInfo={props.item} to="/" onClick={() => this.setState({isOpen: false})}/>
+                            <EditComponent key={props.item.id} handleEdits={props.handleEdits} userInfo={props.item} {...props} onClick={() => setIsOpen(false)}  handleClose={() => setIsOpen(false)}/>
                         </EditModal>
                     </Menu>
                     </>
                     }
-                    title={`${firstName} ${lastName} `}
+                    title={`${firstName} ${lastName}`}
                 />
                 <CardMedia
                     className={classes.media}
@@ -124,8 +134,8 @@ const UserCards = (props) => {
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites" onClick={handleDelete}>
-                        <DeleteOutlineIcon />
+                    <IconButton aria-label="delete" onClick={handleDelete}>
+                        <DeleteOutlineIcon className={classes.delete}/>
                     </IconButton>
                     <IconButton
                         className={clsx(classes.expand, {

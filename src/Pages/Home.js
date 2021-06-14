@@ -31,9 +31,9 @@ const Home = (props) => {
         <h1> Contact List </h1>
       <Container>
         <Grid container spacing={2} justify="center">
-          {userProfiles.map(item => 
+          {userProfiles.map((item, key) => 
           <Grid key={item.id} item className={classes.itemContainer} xs={12} sm={6} md={3}>
-            <UserCards  key={item.id} item={item} handleEdits={props.handleEdits} handleDelete={props.handleDelete} />
+            <UserCards  key={key} {...props} item={item} handleEdits={props.handleEdits} handleDelete={props.handleDelete} />
           </Grid> 
           )}
         </Grid>

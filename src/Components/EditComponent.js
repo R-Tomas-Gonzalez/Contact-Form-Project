@@ -13,9 +13,8 @@ const EditComponent = (props) => {
     const {id, firstName, lastName, phoneNumber, email } = userInfo;
 
     const sendEditedContact = (data) => {
-
         props.handleEdits(data);
-
+        props.history.push("/")
     }
 
     const handleSubmit = (event) => {
@@ -30,13 +29,15 @@ const EditComponent = (props) => {
         })
 
         sendEditedContact(editedContactInfo);
-      }
+        props.handleClose()
+        event.preventDefault();
+    }
     
     const handleChange = (event) => {
         setUserInfo({
             "id": id,
             [event.target.name]:event.target.value
-        });
+         });
     }
     
     return (
