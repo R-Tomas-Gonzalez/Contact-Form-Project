@@ -1,8 +1,20 @@
 import React, {useRef} from "react";
 import Container from '@material-ui/core/Container';
+import Input from '@material-ui/core/Input';
+import { makeStyles } from '@material-ui/core/styles';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+}));
 
 const CreateNew = (props) => {
+
+  const classes= useStyles();
   
   const firstNameRef = useRef(null);
   const lastNameRef = useRef(null);
@@ -38,26 +50,25 @@ const CreateNew = (props) => {
     <Container>
       <div>
         <h1>Add Character</h1>
-        <form onSubmit={handleSubmit}>
+        <form className={classes.root} onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="firstName">First Name</label>
-            <br></br>
-            <input type="text" name="firstName" ref={firstNameRef} required/>
+          <Input type="text" required inputRef={firstNameRef} id="firstName" label="firstName" placeholder="First Name" />
+
           </div>
+          <br />
           <div>
-            <label htmlFor="lastName">Last Name</label>
-            <br></br>
-            <input type="text" name="lastName" ref={lastNameRef} required/>
+          <Input type="text" required inputRef={lastNameRef} id="lastName" label="lastName" placeholder="Last Name" />
+
           </div>
+          <br />
           <div>
-            <label htmlFor="phoneNumber">Phone Number</label>
-            <br></br>
-            <input type="text" name="phoneNumber" ref={phoneNumberRef} required/>
+          <Input type="text" required inputRef={phoneNumberRef} id="phoneNumber" label="phoneNumber" placeholder="Phone Number" />
+
           </div>
+          <br />
           <div>
-            <label htmlFor="email">Email</label>
-            <br></br>
-            <input type="email" name="email" ref={emailRef} required/>
+          <Input type="email" required inputRef={emailRef} id="email" label="email" placeholder="Email" />
+
           </div>
           <br></br>
           <input type="submit" value="Create New Contact!" />

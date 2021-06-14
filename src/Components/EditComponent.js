@@ -1,7 +1,19 @@
 import React, { useState, useRef } from 'react';
 import Container from '@material-ui/core/Container';
+import Input from '@material-ui/core/Input';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+}));
 
 const EditComponent = (props) => {
+    const classes= useStyles();
     
     const [userInfo, setUserInfo] = useState(props.userInfo);
 
@@ -45,26 +57,26 @@ const EditComponent = (props) => {
             
             <div>
                 <h3> Edit Information</h3>
-                <form onSubmit={handleSubmit}>
+                <form className={classes.root} onSubmit={handleSubmit}>
                     <div>
+                        <Input type="text" id="firstName" defaultValue={firstName} placeholder={firstName} onChange={handleChange} inputRef={firstNameRef}/>
                         <label htmlFor="firstName">First Name</label>
                         <br />
-                        <input type="text" name="firstName" value={firstName} placeholder={firstName} onChange={handleChange} ref={firstNameRef}/>
                     </div>
                     <div>
+                        <Input type="text" id="lastName" defaultValue={lastName} placeholder={lastName} onChange={handleChange} inputRef={lastNameRef}/>
                         <label htmlFor="lastName">Last Name</label>
                         <br />
-                        <input type="text" name="lastName" value={lastName} placeholder={lastName} onChange={handleChange} ref={lastNameRef}/>
                     </div>
                     <div>
+                        <Input type="tel" id="phoneNumber" defaultValue={phoneNumber} placeholder={phoneNumber} onChange={handleChange} inputRef={phoneNumberRef}/>
                         <label htmlFor="phoneNumber">Phone Number</label>
                         <br />
-                        <input type="tel" name="phoneNumber" value={phoneNumber} placeholder={phoneNumber} onChange={handleChange} ref={phoneNumberRef}/>
                     </div>
                     <div>
+                        <Input type="email" id="email" defaultValue={email} placeholder={email} onChange={handleChange} inputRef={emailRef} />
                         <label htmlFor="email">Email</label>
                         <br />
-                        <input type="email" name="email" value={email} placeholder={email} onChange={handleChange} ref={emailRef} />
                     </div>
                     <br />
                     <input type="submit" value="Submit" />

@@ -11,7 +11,7 @@ const EditModal = ({ open, children, onClose }) => {
         <Fragment>
             <div className="overlay-styles" onClick={onClose}/>
             <div className="modal-styles">
-                <button  onClick={onClose}>X</button>
+                <button onClick={onClose}>X</button>
                 {children} 
             </div>
         </Fragment>,
