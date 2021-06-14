@@ -60,23 +60,23 @@ const EditComponent = (props) => {
                 <form className={classes.root} onSubmit={handleSubmit}>
                     <div>
                         <Input type="text" id="firstName" defaultValue={firstName} placeholder={firstName} onChange={handleChange} inputRef={firstNameRef}/>
-                        <label htmlFor="firstName">First Name</label>
                         <br />
+                        <label htmlFor="firstName">First Name</label>
                     </div>
                     <div>
                         <Input type="text" id="lastName" defaultValue={lastName} placeholder={lastName} onChange={handleChange} inputRef={lastNameRef}/>
-                        <label htmlFor="lastName">Last Name</label>
                         <br />
+                        <label htmlFor="lastName">Last Name</label>
                     </div>
                     <div>
                         <Input type="tel" id="phoneNumber" defaultValue={phoneNumber} placeholder={phoneNumber} onChange={handleChange} inputRef={phoneNumberRef}/>
-                        <label htmlFor="phoneNumber">Phone Number</label>
                         <br />
+                        <label htmlFor="phoneNumber">Phone Number</label>
                     </div>
                     <div>
                         <Input type="email" id="email" defaultValue={email} placeholder={email} onChange={handleChange} inputRef={emailRef} />
-                        <label htmlFor="email">Email</label>
                         <br />
+                        <label htmlFor="email">Email</label>
                     </div>
                     <br />
                     <input type="submit" value="Submit" />
