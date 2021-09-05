@@ -26,7 +26,6 @@ function App() {
     for (const user of userProfiles ) {
       if (user.firstName === data.firstName){
         const index = userProfiles.indexOf(user);
-        console.log(index);
         userProfiles.splice(index, 1);
         sessionStorage.setItem("user-data", JSON.stringify(userProfiles));
         setUserProfiles(JSON.parse(sessionStorage.getItem("user-data")))
