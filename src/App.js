@@ -36,8 +36,6 @@ function App() {
   const handleEdits = (data) => {
     for (const user of userProfiles ) {
       if (user.id === data.id){
-        console.log("User: " + user);
-        console.log("Data: " + data);
         const index = userProfiles.indexOf(user);
         userProfiles.splice(index, 1, data);
         sessionStorage.setItem("user-data", JSON.stringify(userProfiles));

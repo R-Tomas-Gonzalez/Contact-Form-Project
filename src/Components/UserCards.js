@@ -59,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const UserCards = (props) => {
+    
     const { firstName, lastName, phoneNumber, email, image } = props.item
 
     const [isOpen, setIsOpen] = React.useState(false);
@@ -86,6 +87,7 @@ const UserCards = (props) => {
     }
 
     return (
+        
         <Paper className={classes.paper}>
             <Card className={classes.root}>
                 <CardHeader

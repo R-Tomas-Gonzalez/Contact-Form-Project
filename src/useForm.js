@@ -1,11 +1,12 @@
 import {useState, useEffect} from 'react';
 
 const useForm = (validateInfo, props) => {
-    const lastUser = props.userData.length - 1;
-    const lastUserId = props.userData[lastUser].id;
+    const usersLength = props.userData.length
+    
+    let newUserId = usersLength + 1;
     
     const [values, setValues] = useState({
-        id: (lastUserId + 1),
+        id: newUserId,
         firstName: '',
         lastName: '',
         phoneNumber: '',
