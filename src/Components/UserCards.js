@@ -59,14 +59,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const UserCards = (props) => {
-    
-    const { id, firstName, lastName, phoneNumber, email } = props.item
+    const { firstName, lastName, phoneNumber, email, image } = props.item
 
     const [isOpen, setIsOpen] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const avatarLetter = firstName[0] + lastName[0];
-    const image = id <= 12 ?  `/images/${id}.png` : '/images/default-image.png'
 
     const classes = useStyles();
 
@@ -127,7 +125,7 @@ const UserCards = (props) => {
                 />
                 <CardMedia
                     className={classes.media}
-                    image={image}
+                    image={image ? image : "images/default-image.png"}
                 />
                 <CardContent>
                     <Typography variant="body2" color="textSecondary" component="p">
