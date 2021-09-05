@@ -1,77 +1,52 @@
-import React, {useRef} from "react";
+import React from "react";
 import Container from '@material-ui/core/Container';
-import Input from '@material-ui/core/Input';
+import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
+import { Button } from "@material-ui/core";
+import useForm from "../useForm";
+import validate from "../validateInfo"
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: '25ch',
-    },
-  },
+const useStyles = makeStyles(() => ({
+  form: {
+    width: "300px",
+    display: "flex",
+    flexDirection: "column",
+    alignSelf: "center",
+  }
 }));
 
 const CreateNew = (props) => {
 
   const classes= useStyles();
-  
-  const firstNameRef = useRef(null);
-  const lastNameRef = useRef(null);
-  const phoneNumberRef = useRef(null);
-  const emailRef = useRef(null);
 
-  const addNewContact = (newContactInfo) => {
-    props.handleNewData(newContactInfo);
-    
-    props.history.push("/");
-  }
-
-  const handleSubmit = (event) => {
-
-    const lastUser = props.userData.length - 1;
-    const lastUserId = props.userData[lastUser].id;
-    
-    const newContactInfo = ({
-      "id": (lastUserId + 1),
-      "firstName": firstNameRef.current.value,
-      "lastName": lastNameRef.current.value,
-      "phoneNumber": phoneNumberRef.current.value,
-      "email": emailRef.current.value,
-      
-    })
-
-    addNewContact(newContactInfo);
-
-    event.preventDefault();
-  }
+  const {handleChange, handleSubmit, values, errors} = useForm(validate, props); 
 
   return (
     <Container>
-      <div>
+      <div className="new-character-form">
         <h1>Add Character</h1>
-        <form className={classes.root} onSubmit={handleSubmit}>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <div>
-          <Input type="text" required inputRef={firstNameRef} id="firstName" label="firstName" placeholder="First Name" />
-
+          <TextField type="text" name="firstName" value={values.firstName} onChange={handleChange} variant="outlined" id="firstName" label="First Name" fullWidth={true}/>
+          {errors.firstName && <p style={{color: "red"}}>{errors.firstName}</p>}
           </div>
           <br />
           <div>
-          <Input type="text" required inputRef={lastNameRef} id="lastName" label="lastName" placeholder="Last Name" />
-
+          <TextField type="text" name="lastName" value={values.lastName} onChange={handleChange} variant="outlined" id="lastName" label="Last Name" fullWidth={true}/>
+          {errors.lastName && <p style={{color: "red"}}>{errors.lastName}</p>}
           </div>
           <br />
           <div>
-          <Input type="text" required inputRef={phoneNumberRef} id="phoneNumber" label="phoneNumber" placeholder="Phone Number" />
-
+          <TextField type="text" name="phoneNumber" value={values.phoneNumber} onChange={handleChange} variant="outlined" id="phoneNumber" label="Phone Number" fullWidth={true}/>
+          {errors.phoneNumber && <p style={{color: "red"}}>{errors.phoneNumber}</p>}
           </div>
           <br />
           <div>
-          <Input type="email" required inputRef={emailRef} id="email" label="email" placeholder="Email" />
-
+          <TextField type="email" name="email" value={values.email} onChange={handleChange} variant="outlined" id="email" label="Email" fullWidth={true} />
+          {errors.email && <p style={{color: "red"}}>{errors.email}</p>}
           </div>
           <br></br>
-          <input type="submit" value="Create New Contact!" />
+          <Button variant="contained" color="primary" type="submit" style={{marginBottom: "25px"}}>Add New Contact</Button>
         </form>
       </div>
     </Container>

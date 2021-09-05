@@ -14,7 +14,7 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, .7); 
-  z-index: 1000;
+  z-index: 2;
 }
 
 .modal-styles {
@@ -27,4 +27,16 @@
   z-index: 1000;
   color: #75736e;
   border-radius: 7px;
+}
+
+.new-character-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 175px;
+}
+
+.form-input p {
+  color: red;
 }

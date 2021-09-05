@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react';
 import Container from '@material-ui/core/Container';
-import Input from '@material-ui/core/Input';
 import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,7 +31,7 @@ const EditComponent = (props) => {
     }
 
     const handleSubmit = (event) => {
-
+        
         const editedContactInfo = ({
           "id": id,
           "firstName": firstNameRef.current.value,
@@ -54,36 +55,31 @@ const EditComponent = (props) => {
     
     return (
         <Container>
-            
             <div>
                 <h3> Edit Information</h3>
-                <form className={classes.root} onSubmit={handleSubmit}>
+                <form className={classes.form} onSubmit={handleSubmit}>
                     <div>
-                        <Input type="text" id="firstName" defaultValue={firstName} placeholder={firstName} onChange={handleChange} inputRef={firstNameRef}/>
-                        <br />
-                        <label htmlFor="firstName">First Name</label>
+                        <TextField type="text" name="firstName" onChange={handleChange} defaultValue={firstName} variant="outlined" id="firstName" label="First Name" fullWidth={true} inputRef={firstNameRef}/>    
                     </div>
+                        <br />
                     <div>
-                        <Input type="text" id="lastName" defaultValue={lastName} placeholder={lastName} onChange={handleChange} inputRef={lastNameRef}/>
-                        <br />
-                        <label htmlFor="lastName">Last Name</label>
+                        <TextField type="text" name="lastName" onChange={handleChange} defaultValue={lastName} variant="outlined" id="lastName" label="Last Name" fullWidth={true} inputRef={lastNameRef}/>
                     </div>
+                        <br />
                     <div>
-                        <Input type="tel" id="phoneNumber" defaultValue={phoneNumber} placeholder={phoneNumber} onChange={handleChange} inputRef={phoneNumberRef}/>
-                        <br />
-                        <label htmlFor="phoneNumber">Phone Number</label>
+                        <TextField type="text" name="phoneNumber" onChange={handleChange} defaultValue={phoneNumber} variant="outlined" id="phoneNumber" label="Phone Number" fullWidth={true} inputRef={phoneNumberRef}/>
                     </div>
+                        <br />
                     <div>
-                        <Input type="email" id="email" defaultValue={email} placeholder={email} onChange={handleChange} inputRef={emailRef} />
-                        <br />
-                        <label htmlFor="email">Email</label>
+                        <TextField type="email" name="email" onChange={handleChange} defaultValue={email} variant="outlined" id="email" label="Email" fullWidth={true} inputRef={emailRef}/>
                     </div>
-                    <br />
-                    <input type="submit" value="Submit" />
-                </form>    
+                        <br />
+                    <Button variant="contained" color="primary" type="submit" >Edit Contact</Button>
+                </form>        
             </div>
         </Container>
     )
 }
 
 export default EditComponent
+

@@ -5,22 +5,18 @@ import Container from '@material-ui/core/Container';
 import UserCards from '../Components/UserCards';
 import TextField from '@material-ui/core/TextField';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    textAlign: 'center'
+    textAlign: 'center',
+    marginTop: '175px',
+    marginBottom: '50px'
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-  },
-  itemContainer: {
-    display: "flex",
-    justifyContent: "center"
-  },
-
+  }
 }));
 
 const Home = (props) => {
@@ -31,18 +27,14 @@ const Home = (props) => {
   return (
     <div className={classes.root}>
         <h1> Contact List </h1>
-        <TextField onChange={event => {setSearch(event.target.value)}} id="Search" label="Search..." variant="outlined" />
+        <TextField onChange={event => {setSearch(event.target.value)}} id="Search" variant="outlined" label="Search by first name..." style={{width: "275px"}} />
       <Container>
         <br></br>
         <Grid container spacing={2} justify="center">
-          {userProfiles.filter((val)=> {if (search == "") {
-            return val;
-          } else if(val.firstName.toLowerCase().includes(search.toLowerCase())) {
-            return val;
-          }
-        }).map((item, key) => 
-          <Grid key={item.id} item className={classes.itemContainer} xs={12} sm={6} md={3}>
-            <UserCards  key={key} {...props} item={item} handleEdits={props.handleEdits} handleDelete={props.handleDelete} />
+          {userProfiles.filter((val)=> {return search === "" || val.firstName.toLowerCase().includes(search.toLowerCase()) ? val : null })
+          .map((item, key) => 
+          <Grid key={key} item >
+            <UserCards key={key} {...props} item={item} handleEdits={props.handleEdits} handleDelete={props.handleDelete} />
           </Grid> 
           )}
         </Grid>

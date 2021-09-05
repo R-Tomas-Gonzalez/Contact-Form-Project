@@ -1,7 +1,7 @@
 import './App.css';
 import React, {useEffect, useState} from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Header from "./Components/Header"
+import Header from "./Components/NavBar"
 import Home from "./Pages/Home";
 import CreateNew from "./Pages/CreateNew";
 import users from "./users";
@@ -26,6 +26,7 @@ function App() {
     for (const user of userProfiles ) {
       if (user.firstName === data.firstName){
         const index = userProfiles.indexOf(user);
+        console.log(index);
         userProfiles.splice(index, 1);
         sessionStorage.setItem("user-data", JSON.stringify(userProfiles));
         setUserProfiles(JSON.parse(sessionStorage.getItem("user-data")))
@@ -36,6 +37,8 @@ function App() {
   const handleEdits = (data) => {
     for (const user of userProfiles ) {
       if (user.id === data.id){
+        console.log("User: " + user);
+        console.log("Data: " + data);
         const index = userProfiles.indexOf(user);
         userProfiles.splice(index, 1, data);
         sessionStorage.setItem("user-data", JSON.stringify(userProfiles));

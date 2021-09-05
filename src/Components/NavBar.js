@@ -15,7 +15,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { withRouter } from 'react-router-dom';
 import { IconContext } from 'react-icons';
-import { SiVisa } from 'react-icons/si';
+import { RiUserSearchLine } from 'react-icons/ri';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function HideOnScroll(props) {
@@ -34,14 +34,19 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#1a1f71',
     borderBottomColor: '#f7b600',
     borderBottom: 'solid 4px',
+    zIndex: 2
   },
   root: {
     flexGrow: 1,
   },
   menuButton: {
+    marginLeft: "auto",
     marginRight: theme.spacing(2),
   },
-  box: {[theme.breakpoints.down('xs')] : { flexGrow: 1}
+  box: {
+    margin: "20px 0 20px 0",
+    padding: "10px",
+    border: "solid 2px",
   },
   headerOptions: {
     display: "flex",
@@ -80,11 +85,10 @@ const Header = (props) => {
       <Container>
           <Toolbar>
             <Box edge="start" className={classes.box}>
-              <IconContext.Provider value={{ size: "7.5em"}}>
-                <SiVisa />
+              <IconContext.Provider value={{ size: "3.5em"}}>
+                <RiUserSearchLine />
               </IconContext.Provider>
             </Box>
-
                 {isMobile ? (
                 <>
                 <IconButton
@@ -125,8 +129,6 @@ const Header = (props) => {
       </Container>
         </AppBar>
         </HideOnScroll>
-        <Toolbar />
-        <Toolbar />
     </React.Fragment>
   );
 }

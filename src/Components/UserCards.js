@@ -22,7 +22,7 @@ import EditComponent from './EditComponent';
 const useStyles = makeStyles((theme) => ({
     
     root: {
-        maxWidth: 345,
+        minWidth: "245px",
     },
     media: {
         height: 0,
@@ -48,8 +48,10 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
     padding: theme.spacing(2),
-    textAlign: 'center',
+    display: 'flex',
+    justifyContent: 'center',
     color: theme.palette.text.secondary,
+    width: 'fit-content'
     },
     delete: {
         color: "red"
@@ -64,7 +66,7 @@ const UserCards = (props) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const avatarLetter = firstName[0] + lastName[0];
-    const image = `/images/${id}.png`
+    const image = id <= 12 ?  `/images/${id}.png` : '/images/default-image.png'
 
     const classes = useStyles();
 
@@ -89,7 +91,6 @@ const UserCards = (props) => {
         <Paper className={classes.paper}>
             <Card className={classes.root}>
                 <CardHeader
-                    
                     avatar={
                         <Avatar aria-label="intials" className={classes.avatar}>
                             {avatarLetter}
