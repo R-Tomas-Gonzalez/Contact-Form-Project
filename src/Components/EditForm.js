@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { IconButton, makeStyles } from '@material-ui/core';
@@ -38,12 +37,11 @@ export default function EditForm(props) {
 
     const sendEditedContact = (data) => {
         props.handleEdits(data);
-        props.history.push("/")
     }
 
     const handleSubmit = (event) => {
         sendEditedContact(userInfo);
-        props.handleClose()
+        handleClose()
         event.preventDefault();
     }
     
