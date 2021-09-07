@@ -40,7 +40,6 @@ export default function EditForm(props) {
 
     const handleSubmit = (event) => {
         setErrors(validate(userInfo));
-
         event.preventDefault();
     }
     

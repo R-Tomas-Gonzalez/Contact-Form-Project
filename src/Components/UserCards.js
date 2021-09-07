@@ -63,7 +63,10 @@ const UserCards = (props) => {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
-    const avatarLetter = firstName[0] + lastName[0];
+    let avatarLetter;
+    if (firstName[0] && lastName[0]) {
+        avatarLetter = firstName[0] + lastName[0];
+    }
 
     const classes = useStyles();
 

@@ -2,8 +2,7 @@ import {useState, useEffect} from 'react';
 
 const useForm = (validateInfo, props) => {
     const usersLength = props.userData.length
-    
-    let newUserId = usersLength + 1;
+    const newUserId = usersLength + 1;
     
     const [values, setValues] = useState({
         id: newUserId,
