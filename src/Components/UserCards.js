@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
@@ -16,8 +16,7 @@ import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Paper from '@material-ui/core/Paper';
-import EditModal from './EditModal';
-import EditComponent from './EditComponent';
+import EditForm from './EditForm';
 
 const useStyles = makeStyles((theme) => ({
     
@@ -62,15 +61,14 @@ const UserCards = (props) => {
     
     const { firstName, lastName, phoneNumber, email, image } = props.item
 
-    const [isOpen, setIsOpen] = React.useState(false);
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const avatarLetter = firstName[0] + lastName[0];
 
     const classes = useStyles();
 
 
-    const [expanded, setExpanded] = React.useState(false);
+    const [expanded, setExpanded] = useState(false);
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -115,21 +113,26 @@ const UserCards = (props) => {
                         }}
                         open={open}
                         onClose={() => setAnchorEl(null)}
+                        
                     >
-                        <MenuItem onClick={() => {setIsOpen(true); setAnchorEl(null)}}>Edit</MenuItem>
-                        <EditModal open={isOpen} onClose={() => setIsOpen(false)}>
+                        <MenuItem onClick={() => {setAnchorEl(null)}}>
+                            <EditForm key={props.item.id} handleEdits={props.handleEdits} userInfo={props.item} {...props}/>
+                        </MenuItem>
+                        {/* <EditModal open={isOpen} onClose={() => setIsOpen(false)}>
                             <EditComponent key={props.item.id} handleEdits={props.handleEdits} userInfo={props.item} {...props} onClick={() => setIsOpen(false)}  handleClose={() => setIsOpen(false)}/>
-                        </EditModal>
+                        </EditModal> */}
                     </Menu>
                     </>
                     }
-                    title={`${firstName} ${lastName}`}
                 />
                 <CardMedia
                     className={classes.media}
                     image={image ? image : "images/default-image.png"}
                 />
                 <CardContent>
+                    <Typography variant="h6" component="h2">
+                        {firstName} {lastName}
+                    </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
                         Phone Number: {phoneNumber}
                     </Typography>
